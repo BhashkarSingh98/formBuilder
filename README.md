@@ -63,7 +63,7 @@ npm start
 
 The application should now be running at:
 - Frontend: http://localhost:3000
-- Backend: http://localhost:5000
+- Backend: http://localhost:8080
 
 ## Usage
 
