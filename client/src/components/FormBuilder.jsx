@@ -116,6 +116,19 @@ function FormBuilder() {
     e.preventDefault();
     if (!title || fields.length === 0) return;
     
+    // Check for duplicate labels
+    const labels = fields.map(field => field.label.toLowerCase());
+    const duplicates = labels.filter((label, index) => labels.indexOf(label) !== index);
+    
+    if (duplicates.length > 0) {
+      setSnackbar({
+        open: true,
+        message: `Duplicate labels found: ${[...new Set(duplicates)].join(', ')}`,
+        severity: 'error'
+      });
+      return;
+    }
+    
     try {
       setLoading(true);
       if (isEditing) {
