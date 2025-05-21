@@ -57,37 +57,8 @@ function Navbar() {
       icon: <HomeIcon />,
       path: '/',
       show: !isHomePage
-    },
-    {
-      text: 'Create Form',
-      icon: <AddIcon />,
-      path: '/create',
-      show: isHomePage
     }
   ];
-
-  const drawer = (
-    <Box sx={{ width: 250 }} role="presentation">
-      <List>
-        {menuItems.map((item) => (
-          item.show && (
-            <ListItem 
-              button 
-              key={item.text}
-              onClick={() => {
-                navigate(item.path);
-                setDrawerOpen(false);
-              }}
-            >
-              <ListItemIcon>{item.icon}</ListItemIcon>
-              <ListItemText primary={item.text} />
-            </ListItem>
-          )
-        ))}
-      </List>
-    </Box>
-  );
-
   return (
     <>
       <AppBar 

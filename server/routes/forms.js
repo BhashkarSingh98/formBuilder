@@ -20,7 +20,10 @@ router.get('/:id', async (req, res) => {
     if (!form) {
       return res.status(404).json({ message: 'Form not found' });
     }
-    const responses = await FormResponse.find({ formId: req.params.id });
+    let responses;
+    if (req.query.fetchFormResponse == 'true') {
+      responses = await FormResponse.find({ formId: req.params.id }).sort({ submittedAt: -1 });
+    }
     res.json({ form, responses });
   } catch (error) {
     res.status(500).json({ message: error.message });

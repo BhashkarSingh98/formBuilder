@@ -58,7 +58,7 @@ function FormView() {
 
   const fetchForm = async () => {
     try {
-      const response = await axios.get(`/api/forms/${id}`);
+      const response = await axios.get(`/api/forms/${id}?fetchFormResponse=true`);
       setForm(response.data.form);
       setResponses(response.data.responses);
       setLoading(false);
@@ -85,6 +85,13 @@ function FormView() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
+      // Validate required fields
+      const formElement = e.target;
+      if (!formElement.checkValidity()) {
+        formElement.reportValidity();
+        return;
+      }
+
       setSubmitting(true);
       setError(null);
 
@@ -377,7 +384,7 @@ function FormView() {
 
         <Divider sx={{ mb: { xs: 2, sm: 3, md: 4 } }} />
 
-        <form onSubmit={handleSubmit} noValidate>
+        <form onSubmit={handleSubmit}>
           {form.fields.map((field) => (
             <Box 
               key={field._id} 
@@ -535,6 +542,7 @@ function FormView() {
                   }
                 />
               ) : (
+                
                 <TextField
                   fullWidth
                   type={field.type}
