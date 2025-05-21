@@ -237,7 +237,7 @@ function FormList() {
                     </Tooltip>
                     <Tooltip title="Edit Form">
                       <IconButton 
-                        color="secondary"
+                        color="primary"
                         onClick={() => handleEditClick(form._id)}
                         size={isMobile ? "medium" : "small"}
                       >
