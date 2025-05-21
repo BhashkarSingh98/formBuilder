@@ -20,7 +20,8 @@ import {
   DialogContent,
   DialogActions,
   useTheme,
-  useMediaQuery
+  useMediaQuery,
+  Chip
 } from '@mui/material';
 import AddIcon from '@mui/icons-material/Add';
 import EditIcon from '@mui/icons-material/Edit';
@@ -110,17 +111,35 @@ function FormList() {
           mb: 3,
           pt: 0
         }}>
-          <Typography 
-            variant="h4" 
-            component="h1" 
-            sx={{ 
-              fontWeight: 600, 
-              color: 'primary.main',
-              fontSize: { xs: '1.5rem', sm: '2rem', md: '2.125rem' }
-            }}
-          >
-            Available Forms
-          </Typography>
+          <Box sx={{ 
+            display: 'flex', 
+            alignItems: 'center', 
+            gap: 2 
+          }}>
+            <Typography 
+              variant="h4" 
+              component="h1" 
+              sx={{ 
+                fontWeight: 600, 
+                color: 'primary.main',
+                fontSize: { xs: '1.5rem', sm: '2rem', md: '2.125rem' }
+              }}
+            >
+              Available Forms
+            </Typography>
+            <Chip 
+              label={forms.length}
+              color="primary"
+              sx={{ 
+                height: '25px',
+                fontSize: '1rem',
+                fontWeight: 500,
+                '& .MuiChip-label': {
+                  px: 2
+                }
+              }}
+            />
+          </Box>
           <Button
             variant="contained"
             startIcon={<AddIcon />}

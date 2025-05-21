@@ -224,19 +224,18 @@ function FormBuilder() {
               <ArrowBackIcon />
             </IconButton>
             <Typography 
-              variant="h4" 
-              component="h1" 
+              variant="h6" 
               sx={{ 
                 fontWeight: 600, 
                 color: 'primary.main',
-                fontSize: { xs: '1.5rem', sm: '2rem', md: '2.5rem' }
+                fontSize: { xs: '1.5rem', sm: '2rem', md: '2.2rem' }
               }}
             >
               {isEditing ? 'Edit Form' : 'Create New Form'}
             </Typography>
           </Box>
 
-          <Divider sx={{ mb: { xs: 2, sm: 3, md: 4 } }} />
+          <Divider sx={{ mb: { xs: 2, sm: 3, md: 3 } }} />
 
           {error && (
             <Alert severity="error" sx={{ mb: { xs: 2, sm: 3 } }}>
@@ -261,8 +260,10 @@ function FormBuilder() {
                   fullWidth
                   label="Form Title"
                   value={title}
-                  onChange={(e) => setTitle(e.target.value)}
+                  onChange={(e) => setTitle(e.target.value.slice(0, 50))}
                   required
+                  inputProps={{ maxLength: 50 }}
+                  helperText={`${title.length}/50 characters`}
                   sx={{ mb: 2 }}
                   InputProps={{
                     sx: { borderRadius: 2 }
@@ -359,8 +360,10 @@ function FormBuilder() {
                       <TextField
                         label="Field Label"
                         value={field.label}
-                        onChange={(e) => updateField(index, { label: e.target.value })}
+                        onChange={(e) => updateField(index, { label: e.target.value.slice(0, 30) })}
                         required
+                        inputProps={{ maxLength: 50 }}
+                        // helperText={`${field.label.length}/50 characters`}
                         sx={{ 
                           flexGrow: 1,
                           width: { xs: '100%', sm: 'auto' }
